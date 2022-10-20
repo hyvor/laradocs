@@ -1,0 +1,28 @@
+{
+    "name": "hyvor/doc-generator",
+    "description": "Small libray from laravel projects to generate documentation queickly",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Hyvor\\DocGenerator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Rajitha Fernando",
+            "email": "chandimalfdo23@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "orchestra/testbench": "^6.0",
+        "phpunit/phpunit": "^9.5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hyvor\\DocGenerator\\DocGeneratorServiceProvider"
+            ]
+        }
+    }
+}
