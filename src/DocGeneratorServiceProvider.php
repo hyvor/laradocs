@@ -25,7 +25,7 @@ class DocGeneratorServiceProvider extends ServiceProvider
 
             // Publish assets
             $this->publishes([
-                __DIR__.'/../resources/assets' => public_path('docgenpackage'),
+                __DIR__.'/../resources/assets' => public_path('docgenassets'),
             ], 'assets');
         }
     }

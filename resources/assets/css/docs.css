@@ -1,0 +1,473 @@
+.docs-page {
+    background-color: var(--color-accent-very-light);
+   /* PrismJS 1.26.0 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+json+markup-templating+php+twig+yaml&plugins=line-highlight+line-numbers */
+}
+.docs-page #sidebar {
+    position: fixed;
+    top: 65px;
+    left: 15px;
+    bottom: 15px;
+    overflow: auto;
+    width: 280px;
+    flex-shrink: 0;
+    padding: 30px 0;
+    z-index: 1;
+    background-color: var(--color-box);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+}
+.docs-page #sidebar .nav-section {
+    margin-bottom: 20px;
+}
+.docs-page #sidebar .nav-section-title {
+    font-size: 14px;
+    color: var(--color-text);
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    padding: 10px 25px;
+}
+.docs-page #sidebar .nav-page {
+    display: block;
+    padding: 4px 25px;
+    color: var(--color-text-light);
+    font-size: 13px;
+    letter-spacing: 0.3px;
+    border-left: 3px solid transparent;
+}
+.docs-page #sidebar .nav-page:hover {
+    background-color: var(--color-hover);
+}
+.docs-page #sidebar .nav-page.active {
+    background: var(--color-accent-active);
+    border-color: var(--color-accent);
+}
+.docs-page #content-view {
+    margin-left: 315px;
+    margin-top: 65px;
+    width: 800px;
+    position: relative;
+    background-color: var(--color-box);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.05);
+    border-radius: 20px;
+    padding: 30px 50px;
+    max-width: calc(100% - 330px);
+}
+.docs-page #docs-mobile {
+    display: none;
+    background-color: var(--color-hover);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.docs-page content {
+    letter-spacing: 0.1px;
+   /* h3 {
+        font-size:30px;
+   }
+    h4 {
+        font-size:25px;
+   }
+    */
+}
+.docs-page content > *:first-child {
+    margin-top: 0 !important;
+}
+.docs-page content table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 30px 0;
+}
+.docs-page content table td, .docs-page content table th {
+    padding: 6px 15px;
+    border-bottom: 1px solid #eee;
+}
+.docs-page content table th {
+    padding: 10px 15px;
+    background: #fafafa;
+    border-bottom: 0;
+}
+.docs-page content table th:first-child {
+    border-radius: 20px 0 0 20px;
+}
+.docs-page content table th:last-child {
+    border-radius: 0 20px 20px 0;
+}
+.docs-page content table tr:last-child td {
+    border-bottom: 0;
+}
+.docs-page content table tbody:before {
+    content: "-";
+    display: block;
+    line-height: 1em;
+    color: transparent;
+}
+.docs-page content h1 {
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin: 0px 0px 30px;
+    position: relative;
+    display: table;
+}
+.docs-page content h1:before {
+    position: absolute;
+    content: "";
+    bottom: 5%;
+    left: 0px;
+    width: 30%;
+    height: 3px;
+    background: var(--color-accent);
+}
+.docs-page content h2 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.03em;
+    margin: 24px 0px 0px;
+    margin-top: 40px;
+    line-height: 38px;
+}
+.docs-page content h3 {
+    font-size: 24px !important;
+    line-height: 30px;
+    font-weight: 600 !important;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+.docs-page content h4 {
+    font-size: 21px !important;
+    line-height: 30px;
+    font-weight: 600 !important;
+    margin-top: 25px;
+    margin-bottom: 0;
+}
+.docs-page content h5 {
+    font-size: 18px;
+}
+.docs-page content p img, .docs-page content li img, .docs-page content figure img {
+    border-radius: 5px;
+    margin: 40px auto;
+    display: block;
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+}
+.docs-page content figcaption {
+    text-align: center;
+    margin-top: -20px;
+    color: var(--color-text-light);
+}
+.docs-page content h2, .docs-page content h3 {
+    position: relative;
+}
+.docs-page content h2 a, .docs-page content h3 a {
+    background: none;
+    cursor: pointer;
+}
+.docs-page content h2 img, .docs-page content h3 img {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-right: 5px;
+    visibility: hidden;
+}
+.docs-page content h2 + p, .docs-page content h3 + p {
+    margin-top: 4px;
+}
+.docs-page content h2, .docs-page content h3, .docs-page content h4 {
+    position: relative;
+}
+.docs-page content h2 a:not(.anchor-link), .docs-page content h3 a:not(.anchor-link), .docs-page content h4 a:not(.anchor-link) {
+    text-decoration: none;
+    color: inherit;
+}
+.docs-page content h2 .anchor-link, .docs-page content h3 .anchor-link, .docs-page content h4 .anchor-link {
+    position: absolute;
+    right: 100%;
+    margin-right: 7px;
+    opacity: 0;
+    transition: 0.3s opacity;
+}
+.docs-page content h2 .anchor-link svg, .docs-page content h3 .anchor-link svg, .docs-page content h4 .anchor-link svg {
+    width: 24px;
+}
+.docs-page content h2:hover .anchor-link, .docs-page content h3:hover .anchor-link, .docs-page content h4:hover .anchor-link {
+    opacity: 1;
+}
+.docs-page content a {
+    font-weight: 600;
+    color: var(--color-link);
+    cursor: pointer;
+    text-decoration: underline;
+}
+.docs-page content p, .docs-page content li {
+    line-height: 25px;
+}
+.docs-page content blockquote {
+    padding: 1px 25px;
+    background: #fafafa;
+    border-radius: 5px;
+    border-left: 5px solid var(--color-accent);
+    margin: 30px 0;
+}
+.docs-page content blockquote.danger {
+    border-left-color: #f44336;
+}
+.docs-page content blockquote p {
+    margin: 1rem 0 !important;
+}
+.docs-page content code {
+    font-size: 85%;
+    padding: 0.2em 0.4em;
+    display: inline-block;
+    background-color: #f4f4f4;
+    color: #eb5757;
+    font-family: Consolas, monospace;
+    border-radius: 4px;
+    line-height: normal;
+    font-weight: normal;
+}
+.docs-page content pre {
+    padding: 20px !important;
+    border-radius: 20px !important;
+    font-size: 12px !important;
+    white-space: pre-wrap;
+    font-family: consolas, monospace;
+    tab-size: 4;
+    margin: 30px 0 !important;
+}
+.docs-page content pre code {
+    font-size: inherit;
+    padding: initial;
+    display: inline;
+    background-color: initial;
+}
+.docs-page content ul, .docs-page content ol {
+    margin-top: 1em;
+    padding-left: 30px;
+}
+.docs-page content ul ul, .docs-page content ol ul {
+    margin-top: 5px;
+}
+.docs-page content li {
+    padding: 3px 2px;
+}
+.docs-page content li p {
+    margin: 5px 0;
+}
+.docs-page code[class*=language-], .docs-page pre[class*=language-] {
+    color: #000;
+    background: 0 0;
+    text-shadow: 0 1px #fff;
+    font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+    font-size: 1em;
+    text-align: left;
+    white-space: pre;
+    word-spacing: normal;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 1.5;
+    -moz-tab-size: 4;
+    -o-tab-size: 4;
+    tab-size: 4;
+    -webkit-hyphens: none;
+    -moz-hyphens: none;
+    -ms-hyphens: none;
+    hyphens: none;
+}
+.docs-page code[class*=language-] ::-moz-selection, .docs-page code[class*=language-]::-moz-selection, .docs-page pre[class*=language-] ::-moz-selection, .docs-page pre[class*=language-]::-moz-selection {
+    text-shadow: none;
+    background: #b3d4fc;
+}
+.docs-page code[class*=language-] ::selection, .docs-page code[class*=language-]::selection, .docs-page pre[class*=language-] ::selection, .docs-page pre[class*=language-]::selection {
+    text-shadow: none;
+    background: #b3d4fc;
+}
+@media print {
+    .docs-page code[class*=language-], .docs-page pre[class*=language-] {
+        text-shadow: none;
+   }
+}
+.docs-page pre[class*=language-] {
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+}
+.docs-page :not(pre) > code[class*=language-], .docs-page pre[class*=language-] {
+    background: #f5f2f0;
+}
+.docs-page :not(pre) > code[class*=language-] {
+    padding: 0.1em;
+    border-radius: 0.3em;
+    white-space: normal;
+}
+.docs-page .token.cdata, .docs-page .token.comment, .docs-page .token.doctype, .docs-page .token.prolog {
+    color: #708090;
+}
+.docs-page .token.punctuation {
+    color: #999;
+}
+.docs-page .token.namespace {
+    opacity: 0.7;
+}
+.docs-page .token.boolean, .docs-page .token.constant, .docs-page .token.deleted, .docs-page .token.number, .docs-page .token.property, .docs-page .token.symbol, .docs-page .token.tag {
+    color: #905;
+}
+.docs-page .token.attr-name, .docs-page .token.builtin, .docs-page .token.char, .docs-page .token.inserted, .docs-page .token.selector, .docs-page .token.string {
+    color: #690;
+}
+.docs-page .language-css .token.string, .docs-page .style .token.string, .docs-page .token.entity, .docs-page .token.operator, .docs-page .token.url {
+    color: #9a6e3a;
+    background: rgba(255, 255, 255, .5);
+}
+.docs-page .token.atrule, .docs-page .token.attr-value, .docs-page .token.keyword {
+    color: #07a;
+}
+.docs-page .token.class-name, .docs-page .token.function {
+    color: #dd4a68;
+}
+.docs-page .token.important, .docs-page .token.regex, .docs-page .token.variable {
+    color: #e90;
+}
+.docs-page .token.bold, .docs-page .token.important {
+    font-weight: 700;
+}
+.docs-page .token.italic {
+    font-style: italic;
+}
+.docs-page .token.entity {
+    cursor: help;
+}
+.docs-page pre[data-line] {
+    position: relative;
+    padding: 1em 0 1em 3em;
+}
+.docs-page .line-highlight {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding: inherit 0;
+    margin-top: 1em;
+    background: rgba(153, 122, 102, .08);
+    background: linear-gradient(to right, rgba(153, 122, 102, .1) 70%, rgba(153, 122, 102, 0));
+    pointer-events: none;
+    line-height: inherit;
+    white-space: pre;
+}
+@media print {
+    .docs-page .line-highlight {
+        -webkit-print-color-adjust: exact;
+        color-adjust: exact;
+   }
+}
+.docs-page .line-highlight:before, .docs-page .line-highlight[data-end]:after {
+    content: attr(data-start);
+    position: absolute;
+    top: 0.4em;
+    left: 0.6em;
+    min-width: 1em;
+    padding: 0 0.5em;
+    background-color: rgba(153, 122, 102, .4);
+    color: #f4f1ef;
+    font: bold 65%/1.5 sans-serif;
+    text-align: center;
+    vertical-align: 0.3em;
+    border-radius: 999px;
+    text-shadow: none;
+    box-shadow: 0 1px #fff;
+}
+.docs-page .line-highlight[data-end]:after {
+    content: attr(data-end);
+    top: auto;
+    bottom: 0.4em;
+}
+.docs-page .line-numbers .line-highlight:after, .docs-page .line-numbers .line-highlight:before {
+    content: none;
+}
+.docs-page pre[id].linkable-line-numbers span.line-numbers-rows {
+    pointer-events: all;
+}
+.docs-page pre[id].linkable-line-numbers span.line-numbers-rows > span:before {
+    cursor: pointer;
+}
+.docs-page pre[id].linkable-line-numbers span.line-numbers-rows > span:hover:before {
+    background-color: rgba(128, 128, 128, .2);
+}
+.docs-page pre[class*=language-].line-numbers {
+    position: relative;
+    padding-left: 3.8em;
+    counter-reset: linenumber;
+}
+.docs-page pre[class*=language-].line-numbers > code {
+    position: relative;
+    white-space: inherit;
+}
+.docs-page .line-numbers .line-numbers-rows {
+    position: absolute;
+    pointer-events: none;
+    top: 0;
+    font-size: 100%;
+    left: -3.8em;
+    width: 3em;
+    letter-spacing: -1px;
+    border-right: 1px solid #999;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.docs-page .line-numbers-rows > span {
+    display: block;
+    counter-increment: linenumber;
+}
+.docs-page .line-numbers-rows > span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: 0.8em;
+    text-align: right;
+}
+.docs-page.syntax-highlighting .language-tags {
+    background: #fafafa;
+    border-radius: 20px;
+    padding: 20px;
+}
+.docs-page.syntax-highlighting .language-tags div {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.docs-page.syntax-highlighting .language-tags span {
+    display: inline-block;
+    padding: 2px 8px;
+    margin-right: 4px;
+    margin-bottom: 4px;
+    background: #eaeaea;
+    border-radius: 20px;
+    font-size: 12px;
+}
+.docs-page.syntax-highlighting #theme-previews {
+    margin: 20px 0;
+}
+.docs-page.syntax-highlighting #theme-previews pre code {
+    display: block;
+    padding: 20px 0;
+    line-height: 1.5;
+    font-family: Consolas, Menlo, Monaco, source-code-pro, Courier New, monospace;
+    font-size: 13.6px;
+}
+.docs-page.syntax-highlighting #theme-previews pre code .line {
+    padding: 0 20px;
+}
+.docs-page.syntax-highlighting #theme-previews pre code .line-number {
+    margin-right: 1rem;
+}
+.docs-page.syntax-highlighting #theme-previews pre {
+    padding: 0 !important;
+    margin-top: 10px !important;
+}
+.docs-page.syntax-highlighting #theme-previews .theme-key {
+    font-weight: 600;
+    font-size: 20px;
+}

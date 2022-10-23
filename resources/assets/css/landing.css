@@ -1,33 +1,27 @@
-$mobile: 600px;
-$tab: 992px;
+@import '../colors.css';
+@import '../font.css';
 
-@import '../colors.scss';
-@import '../font.scss';
-@import '../normalize.scss';
+@import './nav.css';
+@import './footer.css';
 
+@import './docs.css';
+
+/* @import '../normalize.scss';
 @import '../console/components/button.scss';
-
-@import './nav.scss';
-@import './footer.scss';
-
-@import './index.scss';
-@import './pricing.scss';
-@import './affiliate';
-@import './docs.scss';
-@import './themes.scss';
+@import './themes.scss'; */ */
 
 a.link {
     font-weight: 600;
-    color: $color-accent;
+    color: var(--color-accent);
     cursor: pointer;
     text-decoration: none;
 }
 
 #flashload-bar {
-    background: $color-accent;
+    background: var(--color-accent);
 }
 
-// some copies from bootstrap
+/* some copies from bootstrap */
 .container {
     width: 100%;
     padding-right: 15px;

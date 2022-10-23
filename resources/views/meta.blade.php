@@ -34,10 +34,9 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#896c6b" />
 
-{{-- @vite(asset('docgenpackage/css/landing.scss')) --}}
-<link href="{{ asset('docgenpackage/css/landing.scss') }}" rel="stylesheet" />
+<link href="{{ asset('docgenassets/css/landing.css')}}" rel="stylesheet" />
 
-<script src="{{ asset('docgenpackage/js/flashload.js')}}"></script>
+<script src="{{ asset('docgenassets/js/flashload.js')}}"></script>
 <script data-flashload-skip-script>
     window.addEventListener('DOMContentLoaded', function() {
         Flashload.start({

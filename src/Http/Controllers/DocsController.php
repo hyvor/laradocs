@@ -8,12 +8,13 @@ use ParsedownExtra;
 
 class DocsController extends Controller
 {
-
+    protected $config;
     public function handle(Request $request)
     {
         $page = $request->route('page') ?? 'index';
+        $this->config = config('docgenpackage');
         $content = $this->getContentFromName($page);
-       
+
         if (is_null($content)) {
             return abort(404);
         }
@@ -24,20 +25,22 @@ class DocsController extends Controller
         // $content = $this->replaceDynamicData($page, $content);
         
         preg_match('/<h1>(.+)<\/h1>/', $content, $matches);
-        $title = $matches[1] ?? 'Hyvor Blogs Docs';
+        $title = $matches[1] ?? 'Documentation';
 
         return view('docgenviews::docs', [
             'pageName' => $page,
             'content' => $content,
             'title' => $title,
-            'nav' => include(resource_path('views/docs/nav.php')),
+            'nav' => $this->config['nav'],
         ]);
     }
 
     private function getContentFromName($name)
     {
+        $path = $this->config['views_path'];
+
         $name = $name ? $name : 'index';
-        $file = resource_path("views/docs/$name.md");
+        $file = resource_path("views/$path/$name.md");
 
         if (file_exists($file)) {
             return file_get_contents($file);

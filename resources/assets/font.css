@@ -1,0 +1,11 @@
+@import url("https://fonts.bunny.net/css?family=ibm-plex-serif:400,600|nunito:400,700");
+
+:root{
+    --font-primary: 'Nunito', sans-serif;
+    --font-content: 'IBM Plex Serif', serif;
+}
+
+body {
+    font-family: var(--font-primary);
+    font-size:14px;
+}
