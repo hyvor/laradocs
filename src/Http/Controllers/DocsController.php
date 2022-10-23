@@ -37,7 +37,7 @@ class DocsController extends Controller
 
     private function getContentFromName($name)
     {
-        $path = $this->config['views_path'];
+        $path = $this->config['content_files_path'];
 
         $name = $name ? $name : 'index';
         $file = resource_path("views/$path/$name.md");

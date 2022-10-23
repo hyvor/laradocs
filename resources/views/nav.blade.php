@@ -1,19 +1,12 @@
 <nav>
 	<div class="container">
-		<a class="nav-brand" href="/">
-			<img src="<?= config('blogs.logo') ?>" alt="Hyvor Blogs LOGO" width="30" height="30" />
-			<span class="brand-name">Hyvor Blogs</span>
+		<a class="nav-brand" href="<?= config('docgenpackage.main_link') ?>">
+			<img src="<?= config('docgenpackage.logo_url') ?>" alt="Hyvor Blogs LOGO" width="30" height="30" />
+			<span class="brand-name"><?= config('docgenpackage.brand_name') ?></span>
 		</a>
 
 		<div class="navbar-content">
-			<div class="navbar-nav">
-				<a class="nav-item nav-link{{ request()->is('docs*') ? " active" : ""  }}" href="/docs">Docs</a>
-			</div>
-			<button id="nav-mobile" onclick="toggleNavBar(event)">
-				<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
-					<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-				</svg>
-			</button>
+	
 		</div>
 	</div>
 

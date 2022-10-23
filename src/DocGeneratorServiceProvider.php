@@ -19,11 +19,17 @@ class DocGeneratorServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__.'/../resources/views', 'docgenviews');
 
         if ($this->app->runningInConsole()) {
+            // Publish views for user customization
+            $this->publishes([
+                __DIR__.'/../resources/views' => resource_path('views/vendor/blogpackage'),
+            ], 'views');
+
+            // Publish config for user customization
             $this->publishes([
               __DIR__.'/../config/config.php' => config_path('docgenpackage.php'),
             ], 'config');
 
-            // Publish assets
+            // Publish assets for user customization
             $this->publishes([
                 __DIR__.'/../resources/assets' => public_path('docgenassets'),
             ], 'assets');
