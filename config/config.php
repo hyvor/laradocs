@@ -6,7 +6,7 @@ return [
     'main_link' => '', //redirect link when click on logo
    
     'theme' => 'default', //not yet implemented
-    'view_files_path' => 'docs', //view files path
+    'app_url' => 'docs', //your app url
     'content_files_path' => 'docs/pages', //md files path
     'nav' => [
         'Intro' => [

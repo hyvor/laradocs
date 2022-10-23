@@ -4,7 +4,7 @@ use Hyvor\DocGenerator\Http\Controllers\DocsController;
 use Illuminate\Support\Facades\Route;
 
 $config = config('docgenpackage');
-$docsPath = $config['view_files_path'];
+$url = $config['app_url'];
 
 // Route::get('/docs/writing', [DocsController::class, 'handle']);
-Route::get("/".$docsPath."/{page?}", [DocsController::class, 'handle']);
+Route::get("/$url/{page?}", [DocsController::class, 'handle']);

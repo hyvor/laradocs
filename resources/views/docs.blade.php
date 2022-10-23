@@ -6,7 +6,7 @@
     @include('docgenviews::meta', [
         'title' => $title,
         'image' => '',
-        'canonical' => "https://blogs.hyvor.com/docs/$pageName",
+        'canonical' => "https://blogs.hyvor.com/{{config('docgenpackage.app_url')}}/{{$pageName}}",
     ])
 </head>
 <body class="docs-page {{$pageName}}">
@@ -24,7 +24,7 @@
                 <div class="nav-section-pages">
                     
                     @foreach ($pages as $page)
-                        <a class="nav-page {{ ($page[0] ?? 'index' ) == $pageName ? 'active' : '' }}" href="/docs/{{$page[0]}}">
+                        <a class="nav-page {{ ($page[0] ?? 'index' ) == $pageName ? 'active' : '' }}" href="/{{config('docgenpackage.app_url')}}/{{$page[0]}}">
                             {{ $page[1] }}
                         </a>
                     @endforeach
