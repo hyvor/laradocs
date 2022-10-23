@@ -119,7 +119,7 @@
         }
     </script>
 
-    <script src="/js-static/docs-prism.js"></script>
+    {{-- <script src="/js-static/docs-prism.js"></script> --}}
 
 </body>
 </html>
