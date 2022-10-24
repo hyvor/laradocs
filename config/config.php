@@ -1,11 +1,11 @@
 <?php
 
 return [
-    'app_url' => 'documents', //your app url
+    'app_url' => 'docgen', //your app url
     'content_files_path' => 'docs/pages', //md files path
     'brand_name' => 'My Blog', //your blog name
     'logo_url' => 'https://blogs.hyvor.com/img/logo.png', //logo image url
-    'main_link' => '/documents', //redirect link when click on logo
+    'main_link' => '/docgen', //redirect link when click on logo
    
     'theme' => 'theme', //theme css file name
 
