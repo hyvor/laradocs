@@ -1,6 +1,6 @@
 <?php
 
-namespace Hyvor\DocGenerator\Http\Controllers;
+namespace Hyvor\Laradocs\Http\Controllers;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;

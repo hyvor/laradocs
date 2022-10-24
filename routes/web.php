@@ -1,6 +1,6 @@
 <?php
 
-use Hyvor\DocGenerator\Http\Controllers\DocsController;
+use Hyvor\Laradocs\Http\Controllers\DocsController;
 use Illuminate\Support\Facades\Route;
 
 $config = config('docgenpackage');

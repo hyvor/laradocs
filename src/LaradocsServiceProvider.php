@@ -1,10 +1,10 @@
 <?php
 
-namespace Hyvor\DocGenerator;
+namespace Hyvor\Laradocs;
 
 use Illuminate\Support\ServiceProvider;
 
-class DocGeneratorServiceProvider extends ServiceProvider
+class LaradocsServiceProvider extends ServiceProvider
 {
     public function register()
     {

@@ -1,8 +1,8 @@
 <?php
 
-namespace Hyvor\DocGenerator\Http\Controllers;
+namespace Hyvor\Laradocs\Http\Controllers;
 
-use Hyvor\DocGenerator\Http\Controllers\Controller;
+use Hyvor\Laradocs\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use ParsedownExtra;
 

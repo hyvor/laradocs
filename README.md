@@ -1,4 +1,4 @@
-# Document Generator
+# Laradocs
 Fully customizable, small libray for laravel projects to generate documentation quickly.
 
 ## Installation
@@ -6,7 +6,7 @@ Fully customizable, small libray for laravel projects to generate documentation 
 Use the composer to install Doc generator to your laravel project.
 
 ```bash
-composer require hyvor/doc-generator 
+composer require hyvor/laradocs 
 ```
 
 ## Usage
@@ -17,17 +17,17 @@ Then you can check it using doc generator default path `{Your project url}/docge
 
 ### Publish assets to public folder
 ```bash
-php artisan vendor:publish --provider="Hyvor\DocGenerator\DocGeneratorServiceProvider" --tag="assets"
+php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="assets"
 ```
 
 ### Publish configuration files (You can also find it in verndor directory)
 ```bash
-php artisan vendor:publish --provider="Hyvor\DocGenerator\DocGeneratorServiceProvider" --tag="config"
+php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="config"
 ```
 
 ### Publish view files (If you want to customize views)
 ```bash
-php artisan vendor:publish --provider="Hyvor\DocGenerator\DocGeneratorServiceProvider" --tag="views"
+php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="views"
 ```
 ## Inside config file
 You can change this file values according to your need.

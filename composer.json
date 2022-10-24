@@ -1,11 +1,11 @@
 {
-    "name": "hyvor/doc-generator",
+    "name": "hyvor/laradocs",
     "description": "Small libray from laravel projects to generate documentation queickly",
     "type": "library",
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Hyvor\\DocGenerator\\": "src/"
+            "Hyvor\\Laradocs\\": "src/"
         }
     },
     "authors": [
@@ -21,7 +21,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Hyvor\\DocGenerator\\DocGeneratorServiceProvider"
+                "Hyvor\\Laradocs\\LaradocsServiceProvider"
             ]
         }
     }
