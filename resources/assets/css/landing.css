@@ -2,8 +2,7 @@
 @import './docs.css';
 
 /* @import '../normalize.scss';
-@import '../console/components/button.scss';
-@import './themes.scss'; */ */
+@import '../console/components/button.scss';*/
 
 a.link {
     font-weight: 600;
@@ -25,17 +24,17 @@ a.link {
     margin-left: auto;
 } 
 @media (min-width: 576px) {
-    .container {
+    .container > a {
         width: 540px;
     }
 }
 @media (min-width: 768px) {
-    .container {
+    .container > a {
         width: 720px;
     }
 }
 @media (min-width: 992px) {
-    .container {
+    .container > a{
         width: 960px;
     }
 }
