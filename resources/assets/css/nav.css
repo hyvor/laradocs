@@ -9,12 +9,15 @@ nav {
     align-items: center;
 }
 nav > .container {
-    display: flex;
+    text-align: center;
 }
 nav .brand-name {
     vertical-align: middle;
     font-weight: 600;
     font-size: var(--header-font-size);
+}
+nav .nav-brand{
+    text-decoration: none;
 }
 nav img {
     vertical-align: middle;

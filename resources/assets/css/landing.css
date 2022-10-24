@@ -24,17 +24,17 @@ a.link {
     margin-left: auto;
 } 
 @media (min-width: 576px) {
-    .container > a {
+    .container {
         width: 540px;
     }
 }
 @media (min-width: 768px) {
-    .container > a {
+    .container {
         width: 720px;
     }
 }
 @media (min-width: 992px) {
-    .container > a{
+    .container {
         width: 960px;
     }
 }
