@@ -1,5 +1,7 @@
 .docs-page {
     background-color: var(--color-accent-very-light);
+    font-family: var(--font-primary);
+    font-size:var(--primary-font-size);
    /* PrismJS 1.26.0 https://prismjs.com/download.html#themes=prism&languages=markup+css+clike+javascript+json+markup-templating+php+twig+yaml&plugins=line-highlight+line-numbers */
 }
 .docs-page #sidebar {
@@ -51,6 +53,7 @@
     border-radius: 20px;
     padding: 30px 50px;
     max-width: calc(100% - 330px);
+    font-family: var(--font-content);
 }
 .docs-page #docs-mobile {
     display: none;

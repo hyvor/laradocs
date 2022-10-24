@@ -1,8 +1,4 @@
-@import '../colors.css';
-@import '../font.css';
-
 @import './nav.css';
-
 @import './docs.css';
 
 /* @import '../normalize.scss';

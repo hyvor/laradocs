@@ -34,6 +34,7 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#896c6b" />
 
+<link href='{{ asset("docgenassets/$theme.css")}}' rel="stylesheet" />
 <link href="{{ asset('docgenassets/css/landing.css')}}" rel="stylesheet" />
 
 <script src="{{ asset('docgenassets/js/flashload.js')}}"></script>

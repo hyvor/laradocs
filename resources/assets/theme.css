@@ -1,3 +1,5 @@
+@import url("https://fonts.bunny.net/css?family=ibm-plex-serif:400,600|nunito:400,700");
+
 :root {
     --color-accent: #896c6b;
     --color-accent-mid:  #e3cecd;
@@ -37,6 +39,13 @@
 
     --color-purple-dark: #91598f;
     --color-purple-light: #ece0ec;
+
+    --font-primary: 'Nunito', sans-serif;
+    --font-content: 'IBM Plex Serif', serif;
+
+    --header-font-size:20px;
+    --primary-font-size:14px;
+
     --mobile: 600px;
     --tab: 992px;
 }

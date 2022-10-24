@@ -14,7 +14,7 @@ nav > .container {
 nav .brand-name {
     vertical-align: middle;
     font-weight: 600;
-    font-size: 20px;
+    font-size: var(--header-font-size);
 }
 nav img {
     vertical-align: middle;

@@ -5,8 +5,8 @@ return [
     'brand_name' => 'My Blog', //your blog name
     'main_link' => '', //redirect link when click on logo
    
-    'theme' => 'default', //not yet implemented
-    'app_url' => 'docs', //your app url
+    'theme' => 'theme', //theme css file name
+    'app_url' => 'test', //your app url
     'content_files_path' => 'docs/pages', //md files path
     'nav' => [
         'Intro' => [

@@ -31,6 +31,7 @@ class DocsController extends Controller
             'pageName' => $page,
             'content' => $content,
             'title' => $title,
+            'theme' => $this->config['theme'],
             'nav' => $this->config['nav'],
         ]);
     }
