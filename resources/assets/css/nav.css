@@ -9,7 +9,7 @@ nav {
     align-items: center;
 }
 nav > .container {
-    text-align: center;
+    display: flex;
 }
 nav .brand-name {
     vertical-align: middle;

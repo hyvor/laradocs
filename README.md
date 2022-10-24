@@ -35,22 +35,29 @@ You can change this file values according to your need.
 <?php
 
 return [
-    'app_url' => 'test', //your app url
-    'content_files_path' => 'docs/pages', //md files path in views
-    'brand_name' => 'My Blog', //your blog name
-    'logo_url' => 'https://blogs.hyvor.com/img/logo.png', //logo image url
-    'main_link' => '/test', //redirect link when click on logo
-   
+    'content_directory' => 'docs', //md files path
     'theme' => 'theme', //theme css file name
 
-    'nav' => [
-        'Intro' => [
-            [null, 'Getting Started'],
-            ['export', 'Export'],
-            ['invalid', 'Invalid']
+    //Define your navigations here
+    'nav' =>[
+        'laradocs' => [//first documentation
+            'Intro' => [
+                [null, 'Getting Started'],
+                ['export', 'Export'],
+                ['invalid', 'Invalid']
+            ],
+            'Features' => [
+                ['sso', 'SSO'],
+            ]
         ],
-        'Features' => [
-            ['sso', 'SSO'],
+        'pricing' => [//second documentation
+            'Intro' => [
+                [null, 'Getting Started']
+            ],
+            'Features' => [
+                ['premium', 'Premium'],
+                ['business', 'Business']
+            ]
         ]
     ]
 ];

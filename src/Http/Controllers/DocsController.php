@@ -13,7 +13,8 @@ class DocsController extends Controller
     {
         $page = $request->route('page') ?? 'index';
         $this->config = config('docgenpackage');
-        $content = $this->getContentFromName($page);
+        $route = $request->route()->getName();
+        $content = $this->getContentFromName($page, $route);
 
         if (is_null($content)) {
             return abort(404);
@@ -31,22 +32,37 @@ class DocsController extends Controller
             'pageName' => $page,
             'content' => $content,
             'title' => $title,
+            'route' => $route,
             'theme' => $this->config['theme'],
-            'nav' => $this->config['nav'],
+            'nav' => $this->config['nav'][$route],
         ]);
     }
 
-    private function getContentFromName($name)
+    private function getContentFromName(string $name, string $route)
     {
-        $path = $this->config['content_files_path'];
+        $dir = $this->config['content_directory'];
 
         $name = $name ? $name : 'index';
-        $file = resource_path("views/$path/$name.md");
+        $file = resource_path("views/$dir/$route/$name.md");
 
         if (file_exists($file)) {
             return file_get_contents($file);
         } else {
-            return null;
+            return $this->error("Content file not exist in defined path");
         }
+    }
+
+    private function error(string $error) {
+        return <<<HTML
+        <div style="padding: 10px;
+            text-align: center;
+            background: #f9bdbd;
+            font-weight: 600;
+            border-radius: 5px;
+            font-size: 15px;
+        ">
+            $error
+        </div>
+        HTML;
     }
 }

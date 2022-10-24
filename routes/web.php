@@ -4,7 +4,8 @@ use Hyvor\Laradocs\Http\Controllers\DocsController;
 use Illuminate\Support\Facades\Route;
 
 $config = config('docgenpackage');
-$url = $config['app_url'];
+$navigation = $config['nav'];
 
-// Route::get('/docs/writing', [DocsController::class, 'handle']);
-Route::get("/$url/{page?}", [DocsController::class, 'handle']);
+foreach($navigation as $path => $nav){
+    Route::get("/$path/{page?}", [DocsController::class, 'handle'])->name($path);
+}

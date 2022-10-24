@@ -6,12 +6,12 @@
     @include('docgenviews::meta', [
         'title' => $title,
         'image' => '',
-        'canonical' => "https://blogs.hyvor.com/{{config('docgenpackage.app_url')}}/{{$pageName}}",
+        'canonical' => "https://blogs.hyvor.com/{{$route}}/{{$pageName}}",
     ])
 </head>
 <body class="docs-page {{$pageName}}">
 
-    @include('docgenviews::nav')
+    @include('docgenviews::header')
 
     <div id="sidebar">
       
@@ -24,7 +24,7 @@
                 <div class="nav-section-pages">
                     
                     @foreach ($pages as $page)
-                        <a class="nav-page {{ ($page[0] ?? 'index' ) == $pageName ? 'active' : '' }}" href="/{{config('docgenpackage.app_url')}}/{{$page[0]}}">
+                        <a class="nav-page {{ ($page[0] ?? 'index' ) == $pageName ? 'active' : '' }}" href="/{{$route}}/{{$page[0]}}">
                             {{ $page[1] }}
                         </a>
                     @endforeach
@@ -50,6 +50,8 @@
         </content>
 
     </div>
+
+    @include('docgenviews::footer')
 
     <script>
 
