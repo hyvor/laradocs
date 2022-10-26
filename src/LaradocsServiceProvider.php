@@ -2,6 +2,7 @@
 
 namespace Hyvor\Laradocs;
 
+use Hyvor\Laradocs\Console\CacheDocs;
 use Illuminate\Support\ServiceProvider;
 
 class LaradocsServiceProvider extends ServiceProvider
@@ -33,6 +34,10 @@ class LaradocsServiceProvider extends ServiceProvider
             $this->publishes([
                 __DIR__.'/../resources/assets' => public_path('docgenassets'),
             ], 'assets');
+
+            $this->commands([
+                CacheDocs::class,
+            ]);
         }
     }
 }

@@ -7,5 +7,6 @@ $config = config('docgenpackage');
 $navigation = $config['nav'];
 
 foreach($navigation as $path => $nav){
+    $path = strtolower($path);
     Route::get("/$path/{page?}", [DocsController::class, 'handle'])->name($path);
 }

@@ -16,7 +16,7 @@ return [
                 ['sso', 'SSO'],
             ]
         ],
-        'pricing' => [//second documentation
+        'sample' => [//second documentation
             'Intro' => [
                 [null, 'Getting Started']
             ],

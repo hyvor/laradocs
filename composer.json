@@ -25,5 +25,10 @@
                 "Hyvor\\Laradocs\\LaradocsServiceProvider"
             ]
         }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
     }
 }
