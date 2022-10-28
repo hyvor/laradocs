@@ -1,12 +1,12 @@
 <?php
 
-return [
-    'content_directory' => 'docs', //md files path
-    'theme' => 'theme', //theme css file name
-
-    //Define your navigations here
-    'nav' =>[
-        'laradocs' => [//first documentation
+return 
+[
+    'laradocs' => [
+        'name' => 'laradocs',
+        'theme' => 'theme',//theme css file name
+        'content_directory' => 'docs/laradocs',//md files path
+        'navigation' => [
             'Intro' => [
                 [null, 'Getting Started'],
                 ['export', 'Export'],
@@ -15,8 +15,13 @@ return [
             'Features' => [
                 ['sso', 'SSO'],
             ]
-        ],
-        'sample' => [//second documentation
+        ]
+    ],
+    'docsv3' => [
+        'name' => 'docsv3',
+        'theme' => 'theme',//theme css file name
+        'content_directory' => 'docs/sample',//md files path
+        'navigation' => [
             'Intro' => [
                 [null, 'Getting Started']
             ],
@@ -25,5 +30,5 @@ return [
                 ['business', 'Business']
             ]
         ]
-    ]
+   ]
 ];

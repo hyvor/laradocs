@@ -31,19 +31,19 @@ class DocsController extends Controller
             'content' => $content,
             'title' => $title,
             'route' => $route,
-            'theme' => $config['theme'],
-            'nav' => $config['nav'][$route],
+            'theme' => $config[$route]['theme'],
+            'nav' => $config[$route]['navigation'],
         ]);
     }
 
     public function processContent(string $route, string $name)
     {
         $config = config('docgenpackage');
-        if(!$config)
+        if(!$config[$route])
             return;
 
-        $dir = $config['content_directory'];
-        $file = resource_path("views/$dir/$route/$name.md");
+        $dir = $config[$route]['content_directory'];
+        $file = resource_path("views/$dir/$name.md");
         if (file_exists($file)) {
             $content = file_get_contents($file);
 

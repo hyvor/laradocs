@@ -4,8 +4,6 @@ namespace Hyvor\Laradocs\Console;
 
 use Hyvor\Laradocs\Http\Controllers\DocsController;
 use Illuminate\Console\Command;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Cache;
 
 class CacheDocs extends Command
@@ -14,15 +12,12 @@ class CacheDocs extends Command
 
     protected $description = 'Store content files in cache';
 
-    protected $config;
-    
     public function handle()
     {
-        $this->config = config('docgenpackage');
-        $nav = $this->config['nav'];
+        $config = config('docgenpackage');
 
-        foreach($nav as $docKey => $doc){
-            foreach($doc as $page){
+        foreach($config as $docKey => $doc){
+            foreach($doc['navigation'] as $page){
                 foreach($page as $link){
                     $pageLink = $link[0] ?? 'index';
                     $key = $docKey.'|'.$pageLink;
