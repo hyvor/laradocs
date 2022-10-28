@@ -26,21 +26,16 @@ class CacheDocs extends Command
                 foreach($page as $link){
                     $pageLink = $link[0] ?? 'index';
                     $key = $docKey.'|'.$pageLink;
-                    $request = new Request();
+                    // $request = new Request();
 
-                    $request->setRouteResolver(function () use ($request,$docKey,$pageLink) {
-                        return (new Route('GET', "/$docKey/$pageLink", []))->name($docKey)->bind($request);
-                    });
-            
+                    // $request->setRouteResolver(function () use ($request,$docKey,$pageLink) {
+                    //     return (new Route('GET', "/$docKey/$pageLink", []))->name($docKey)->bind($request);
+                    // });
                    
-                    $response = (new DocsController)->handle($request);
-                    Cache::put($key, $response->content);
+                    $response = (new DocsController)->processContent($docKey, $pageLink);
+                    Cache::put($key, $response);
                 }
             }
         }
-
-        // return Cache::remember($file, 3600, function() use ($file){
-        //     return file_get_contents($file);
-        // });
     }
 }
