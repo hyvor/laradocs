@@ -23,7 +23,7 @@ class DocsController extends Controller
         $parseDown = new ParsedownExtra();
         $content = $parseDown->text($content);
 
-        // $content = $this->replaceDynamicData($page, $content);
+        $content = $this->replaceDynamicData($content);
         
         preg_match('/<h1>(.+)<\/h1>/', $content, $matches);
         $title = $matches[1] ?? 'Documentation';
@@ -64,5 +64,13 @@ class DocsController extends Controller
             $error
         </div>
         HTML;
+    }
+
+    private function replaceDynamicData(string $markdown, array $data = []){
+        foreach ($data as $key => $value) {
+            $markdown = str_replace('{{'.$key.'}}', $value, $markdown);
+        }
+
+        return $markdown;
     }
 }
