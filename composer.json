@@ -1,6 +1,6 @@
 {
     "name": "hyvor/laradocs",
-    "description": "Small libray from laravel projects to generate documentation queickly",
+    "description": "Small libray from laravel projects to generate documentation quickly",
     "type": "library",
     "license": "MIT",
     "autoload": {
@@ -11,7 +11,7 @@
     "authors": [
         {
             "name": "Rajitha Fernando",
-            "email": "chandimalfdo23@gmail.com"
+            "email": "chandimal@hyvor.com"
         }
     ],
     "require-dev": {
