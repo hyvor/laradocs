@@ -9,12 +9,12 @@ use ParsedownExtra;
 
 class DocsController extends Controller
 {
-    protected $dynamicData = [];
+    protected array $dynamicData = [];
     public function handle(Request $request)
     {
-        $page = $request->route('page') ?? 'index';
+        $page = (string) $request->route('page', 'index');
         $route = $request->route()->getName();
-        $pageName = $page ? $page : 'index';
+        $pageName = (string) $page ? $page : 'index';
 
         $cacheKey = $route.'|'.$pageName;
         if(Cache::get($cacheKey))
@@ -31,23 +31,23 @@ class DocsController extends Controller
             'content' => $content,
             'title' => $title,
             'route' => $route,
-            'theme' => $config[$route]['theme'],
-            'nav' => $config[$route]['navigation'],
+            'theme' => is_array($config) ? $config[$route]['theme'] : 'theme',
+            'nav' => is_array($config) ? $config[$route]['navigation']: [],
         ]);
     }
 
-    public function processContent(string $route, string $name)
+    public function processContent(string $route, string $name) : string
     {
         $config = config('docgenpackage');
-        if(!$config[$route])
-            return;
+        if(!is_array($config) || !$config[$route])
+            return $this->error("Invalid config file");
 
         $dir = $config[$route]['content_directory'];
         $file = resource_path("views/$dir/$name.md");
         if (file_exists($file)) {
             $content = file_get_contents($file);
 
-            if (is_null($content))
+            if (!$content)
                 return abort(404);
 
             $parseDown = new ParsedownExtra();
@@ -60,7 +60,8 @@ class DocsController extends Controller
         }
     }
 
-    private function error(string $error) {
+    private function error(string $error) : string 
+    {
         return <<<HTML
         <div style="padding: 10px;
             text-align: center;
@@ -74,7 +75,8 @@ class DocsController extends Controller
         HTML;
     }
 
-    private function replaceDynamicData(string $markdown){
+    private function replaceDynamicData(string $markdown) : string
+    {
         foreach ($this->dynamicData as $key => $value) {
             $markdown = str_replace('{{'.$key.'}}', $value, $markdown);
         }
@@ -82,7 +84,8 @@ class DocsController extends Controller
         return $markdown;
     }
 
-    protected function setDynamicData(array $dynamicData){
+    protected function setDynamicData(array $dynamicData) : void
+    {
         $this->dynamicData = $dynamicData;
     }
 }

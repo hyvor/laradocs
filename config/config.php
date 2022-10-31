@@ -8,7 +8,7 @@ return
         'content_directory' => 'docs/laradocs',//md files path
         'navigation' => [
             'Intro' => [
-                [null, 'Getting Started'],
+                ['', 'Getting Started'],
                 ['export', 'Export'],
                 ['invalid', 'Invalid']
             ],
@@ -23,7 +23,7 @@ return
         'content_directory' => 'docs/sample',//md files path
         'navigation' => [
             'Intro' => [
-                [null, 'Getting Started']
+                ['', 'Getting Started']
             ],
             'Features' => [
                 ['premium', 'Premium'],

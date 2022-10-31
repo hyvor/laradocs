@@ -12,7 +12,7 @@ class LaradocsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'docgenpackage');
     }
 
-    public function boot()
+    public function boot() : void
     {
         //Route registration
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');

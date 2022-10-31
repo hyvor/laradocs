@@ -12,23 +12,25 @@ class CacheDocs extends Command
 
     protected $description = 'Store content files in cache';
 
-    public function handle()
+    public function handle() : void
     {
         $config = config('docgenpackage');
 
-        foreach($config as $docKey => $doc){
-            foreach($doc['navigation'] as $page){
-                foreach($page as $link){
-                    $pageLink = $link[0] ?? 'index';
-                    $key = $docKey.'|'.$pageLink;
-                    // $request = new Request();
-
-                    // $request->setRouteResolver(function () use ($request,$docKey,$pageLink) {
-                    //     return (new Route('GET', "/$docKey/$pageLink", []))->name($docKey)->bind($request);
-                    // });
-                   
-                    $response = (new DocsController)->processContent($docKey, $pageLink);
-                    Cache::put($key, $response);
+        if(is_array($config)){
+            foreach($config as $docKey => $doc){
+                foreach($doc['navigation'] as $page){
+                    foreach($page as $link){
+                        $pageLink = $link[0] ?? 'index';
+                        $key = $docKey.'|'.$pageLink;
+                        // $request = new Request();
+    
+                        // $request->setRouteResolver(function () use ($request,$docKey,$pageLink) {
+                        //     return (new Route('GET', "/$docKey/$pageLink", []))->name($docKey)->bind($request);
+                        // });
+                       
+                        $response = (new DocsController)->processContent($docKey, $pageLink);
+                        Cache::put($key, $response);
+                    }
                 }
             }
         }
