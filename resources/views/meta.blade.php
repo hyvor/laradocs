@@ -17,7 +17,7 @@
 
 <!-- OG -->
 <meta property="og:type" content= "website" />
-<meta property="og:url" content=" <?= $canonical ?> "/>
+<meta property="og:url" content="<?= $canonical ?>"/>
 <meta property="og:site_name" content="Hyvor Blogs" />
 <meta property="og:image" content="<?= $image ?>" />
 <meta property="og:title" content="<?= $title ?>"/>

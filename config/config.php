@@ -3,31 +3,50 @@
 return 
 [
     'laradocs' => [ //first documentation path
-        'name' => 'laradocs',
+        'route' => 'laradocs',
         'theme' => 'theme',//theme css file name
         'content_directory' => 'docs/laradocs',//md files path
         'navigation' => [
             'Intro' => [
-                ['', 'Getting Started'],
-                ['export', 'Export'],
-                ['invalid', 'Invalid']
+                [
+                    'id' => '',
+                    'label' => 'Getting Started'
+                ],
+                [
+                    'id' => 'export',
+                    'file' => 'ex',
+                    'label' => 'Export'
+                ],
+                [
+                    'id' => 'invalid',
+                    'file' => 'inv',
+                    'label' => 'Invalid'
+                ]
             ],
             'Features' => [
-                ['sso', 'SSO'],
+                [
+                    'id' => 'sso',
+                    'label' => 'SSO'
+                ]
             ]
         ]
     ],
     'docsv3' => [//second documentation path
-        'name' => 'docsv3',
+        'route' => 'docsv3',
         'theme' => 'theme',//theme css file name
         'content_directory' => 'docs/sample',//md files path
         'navigation' => [
             'Intro' => [
-                ['', 'Getting Started']
+                [
+                    'id' => '',
+                    'label' => 'Getting Started'
+                ]
             ],
             'Features' => [
-                ['premium', 'Premium'],
-                ['business', 'Business']
+                [
+                    'id' => 'sso',
+                    'label' => 'SSO'
+                ]
             ]
         ]
    ]

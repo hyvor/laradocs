@@ -24,8 +24,8 @@
                 <div class="nav-section-pages">
                     
                     @foreach ($pages as $page)
-                        <a class="nav-page {{ ($page[0] ?? 'index' ) == $pageName ? 'active' : '' }}" href="/{{$route}}/{{$page[0]}}">
-                            {{ $page[1] }}
+                        <a class="nav-page {{ ($page['id'] ?? 'index' ) == $pageName ? 'active' : '' }}" href="/{{$route}}/{{$page['id']}}">
+                            {{ $page['label'] }}
                         </a>
                     @endforeach
 
