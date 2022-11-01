@@ -14,18 +14,18 @@ return
                 ],
                 [
                     'id' => 'export',
-                    'file' => 'ex',
                     'label' => 'Export'
                 ],
                 [
                     'id' => 'invalid',
-                    'file' => 'inv',
+                    'file' => 'index',
                     'label' => 'Invalid'
                 ]
             ],
             'Features' => [
                 [
                     'id' => 'sso',
+                    'file' => 'export',
                     'label' => 'SSO'
                 ]
             ]

@@ -12,15 +12,16 @@ class DocsController extends Controller
     protected array $dynamicData = [];
     public function handle(Request $request)
     {
-        $page = (string) $request->route('page', 'index');
+        $page = (string) $request->route('page');
         $route = $request->route()->getName();
-        $pageName = (string) $page ? $page : 'index';
 
-        $cacheKey = $route.'|'.$pageName;
+        $filePath = $this->getFilePath($route, $page);
+       
+        $cacheKey = $route.'|'.$filePath;
         if(Cache::get($cacheKey))
-            $content =  Cache::get($cacheKey);
+            $content = Cache::get($cacheKey);
         else
-            $content = $this->processContent($route, $pageName);
+            $content = $this->processContent($route, $filePath);
         
         preg_match('/<h1>(.+)<\/h1>/', $content, $matches);
         $title = $matches[1] ?? 'Documentation';
@@ -34,6 +35,26 @@ class DocsController extends Controller
             'theme' => is_array($config) ? $config[$route]['theme'] : 'theme',
             'nav' => is_array($config) ? $config[$route]['navigation']: [],
         ]);
+    }
+
+    private function getFilePath(string $route, string $page) : string 
+    {
+        $config = config('docgenpackage');
+        if(!is_array($config))
+            return 'index';
+
+        $nav = $config[$route]['navigation'];
+        foreach($nav as $section){
+            foreach($section as $link){
+                if($link['id'] == $page){
+                    if(isset($link['file']))
+                        return $link['file'];
+                    else
+                        return !empty($link['id']) ? $link['id'] : 'index';
+                }
+            }
+        }
+        
     }
 
     public function processContent(string $route, string $name) : string
