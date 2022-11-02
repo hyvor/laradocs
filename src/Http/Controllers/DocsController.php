@@ -15,36 +15,39 @@ class DocsController extends Controller
         $page = (string) $request->route('page');
         $route = $request->route()->getName();
 
-        $filePath = $this->getFilePath($route, $page);
+        $config = config('docgenpackage');
+        if (!is_array($config))
+            return abort(404);
+
+        $key = array_search($route, array_column($config, 'route'));
+        $documentConfig = $config[$key];
+        $contentDir = $documentConfig['content_directory'] ?? 'docs';
+        $navigation = $documentConfig['navigation'] ?? [];
+
+        $filePath = $this->getFilePath($navigation, $page);
        
         $cacheKey = $route.'|'.$filePath;
         if(Cache::get($cacheKey))
             $content = Cache::get($cacheKey);
         else
-            $content = $this->processContent($route, $filePath);
+            $content = $this->processContent($contentDir, $filePath);
         
         preg_match('/<h1>(.+)<\/h1>/', $content, $matches);
         $title = $matches[1] ?? 'Documentation';
-        $config = config('docgenpackage');
-
+        
         return view('docgenviews::docs', [
             'pageName' => $page,
             'content' => $content,
             'title' => $title,
             'route' => $route,
-            'theme' => is_array($config) ? $config[$route]['theme'] : 'theme',
-            'nav' => is_array($config) ? $config[$route]['navigation']: [],
+            'theme' => $documentConfig['theme'] ?? 'theme',
+            'nav' => $navigation,
         ]);
     }
 
-    private function getFilePath(string $route, string $page) : string 
+    private function getFilePath(array $navigation, string $page) : string 
     {
-        $config = config('docgenpackage');
-        if(!is_array($config))
-            return 'index';
-
-        $nav = $config[$route]['navigation'];
-        foreach($nav as $section){
+        foreach($navigation as $section){
             foreach($section as $link){
                 if($link['id'] == $page){
                     if(isset($link['file']))
@@ -57,14 +60,9 @@ class DocsController extends Controller
         
     }
 
-    public function processContent(string $route, string $name) : string
+    public function processContent(string $directory, string $name) : string
     {
-        $config = config('docgenpackage');
-        if(!is_array($config) || !$config[$route])
-            return $this->error("Invalid config file");
-
-        $dir = $config[$route]['content_directory'];
-        $file = resource_path("views/$dir/$name.md");
+        $file = resource_path("views/$directory/$name.md");
         if (file_exists($file)) {
             $content = file_get_contents($file);
 

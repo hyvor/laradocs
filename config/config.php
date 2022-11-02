@@ -2,7 +2,7 @@
 
 return 
 [
-    'laradocs' => [ //first documentation path
+    [ //first documentation path
         'route' => 'laradocs',
         'theme' => 'theme',//theme css file name
         'content_directory' => 'docs/laradocs',//md files path
@@ -31,7 +31,7 @@ return
             ]
         ]
     ],
-    'docsv3' => [//second documentation path
+    [//second documentation path
         'route' => 'docsv3',
         'theme' => 'theme',//theme css file name
         'content_directory' => 'docs/sample',//md files path
