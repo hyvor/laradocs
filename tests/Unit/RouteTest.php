@@ -25,3 +25,10 @@ test('test pages routes in each doc', function () {
        }
     }
 });
+
+test('test invalid page route', function () {
+    foreach($this->config as $section){
+        $route = strtolower($section['route']);
+        $this->get($route.'/testing')->assertStatus(500);
+    }
+});
