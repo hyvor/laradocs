@@ -34,10 +34,10 @@
 <link rel="shortcut icon" href="/favicon.ico">
 <meta name="theme-color" content="#896c6b" />
 
-<link href='{{ asset("docgenassets/$theme.css")}}' rel="stylesheet" />
-<link href="{{ asset('docgenassets/css/landing.css')}}" rel="stylesheet" />
+<link href='{{ asset("laradocs_assets/$theme.css")}}' rel="stylesheet" />
+<link href="{{ asset('laradocs_assets/css/landing.css')}}" rel="stylesheet" />
 
-<script src="{{ asset('docgenassets/js/flashload.js')}}"></script>
+<script src="{{ asset('laradocs_assets/js/flashload.js')}}"></script>
 <script data-flashload-skip-script>
     window.addEventListener('DOMContentLoaded', function() {
         Flashload.start({

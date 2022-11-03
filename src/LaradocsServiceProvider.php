@@ -9,7 +9,7 @@ class LaradocsServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'docgenpackage');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laradocs_config');
     }
 
     public function boot() : void
@@ -17,22 +17,22 @@ class LaradocsServiceProvider extends ServiceProvider
         //Route registration
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         //Views registration
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'docgenviews');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laradocs_views');
 
         if ($this->app->runningInConsole()) {
             // Publish views for user customization
             $this->publishes([
-                __DIR__.'/../resources/views' => resource_path('views/vendor/blogpackage'),
+                __DIR__.'/../resources/views' => resource_path('views/hyvor/laradocs'),
             ], 'views');
 
             // Publish config for user customization
             $this->publishes([
-              __DIR__.'/../config/config.php' => config_path('docgenpackage.php'),
+              __DIR__.'/../config/config.php' => config_path('laradocs_config.php'),
             ], 'config');
 
             // Publish assets for user customization
             $this->publishes([
-                __DIR__.'/../resources/assets' => public_path('docgenassets'),
+                __DIR__.'/../resources/assets' => public_path('laradocs_assets'),
             ], 'assets');
 
             $this->commands([

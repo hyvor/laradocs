@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @include('docgenviews::meta', [
+    @include('laradocs_views::meta', [
         'title' => $title,
         'image' => '',
         'canonical' => "https://blogs.hyvor.com/{{$route}}/{{$pageName}}",
@@ -11,7 +11,7 @@
 </head>
 <body class="docs-page {{$pageName}}">
 
-    @include('docgenviews::header')
+    @include('laradocs_views::header')
 
     <div id="sidebar">
       
@@ -51,7 +51,7 @@
 
     </div>
 
-    @include('docgenviews::footer')
+    @include('laradocs_views::footer')
 
     <script>
 

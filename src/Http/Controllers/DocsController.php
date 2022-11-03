@@ -3,18 +3,20 @@
 namespace Hyvor\Laradocs\Http\Controllers;
 
 use Hyvor\Laradocs\Http\Controllers\Controller;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
 use ParsedownExtra;
 
 class DocsController extends Controller
 {
-    public function handle(Request $request)
+    public function handle(Request $request) : mixed
     {
         $page = (string) $request->route('page');
-        $route = $request->route()->getName();
+        $route = Route::currentRouteName();
 
-        $config = config('docgenpackage');
+        $config = config('laradocs_config');
         if (!is_array($config))
             return abort(404);
 
@@ -22,8 +24,10 @@ class DocsController extends Controller
         $documentConfig = $config[$key];
         $contentDir = $documentConfig['content_directory'] ?? 'docs';
         $navigation = $documentConfig['navigation'] ?? [];
-
-        $filePath = $this->getFilePath($navigation, $page);
+        
+        $linkData = $this->getLinkData($navigation, $page);
+        $filePath = $linkData->getData()->file;
+        $title = $linkData->getData()->label;
 
         $cacheKey = $route.'|'.$filePath;
         if(Cache::store('file')->get($cacheKey))
@@ -31,10 +35,7 @@ class DocsController extends Controller
         else
             $content = $this->processContent($contentDir, $filePath);
         
-        preg_match('/<h1>(.+)<\/h1>/', $content, $matches);
-        $title = $matches[1] ?? 'Documentation';
-        
-        return view('docgenviews::docs', [
+        return view('laradocs_views::docs', [
             'pageName' => $page,
             'content' => $content,
             'title' => $title,
@@ -44,19 +45,27 @@ class DocsController extends Controller
         ]);
     }
 
-    private function getFilePath(array $navigation, string $page) : string 
+    /**
+     * Return a new JSON response from the application.
+     *
+     * @param  array  $navigation
+     * @param  string  $page
+     * @return \Illuminate\Http\JsonResponse
+     */
+    private function getLinkData(array $navigation, string $page) : JsonResponse 
     {
         foreach($navigation as $section){
             foreach($section as $link){
                 if($link['id'] == $page){
                     if(isset($link['file']))
-                        return $link['file'];
+                        return new JsonResponse(['label' => $link['label'], 'file' => $link['file']]);
                     else
-                        return !empty($link['id']) ? $link['id'] : 'index';
+                        return new JsonResponse(['label' => $link['label'], 'file' => !empty($link['id']) ? $link['id'] : 'index']);
                 }
             }
         }
-        
+
+        return abort(404);
     }
 
     public function processContent(string $directory, string $name) : string
@@ -70,7 +79,7 @@ class DocsController extends Controller
 
             $parseDown = new ParsedownExtra();
             $content = $parseDown->text($content);
-            // $content = $this->replaceDynamicData($content);
+            $content = $this->replaceDynamicData($content);
 
             return $content;
         } else {
@@ -89,7 +98,8 @@ class DocsController extends Controller
 
     private function replaceDynamicData(string $markdown) : string
     {
-        foreach ($this->dynamicData as $key => $value) {
+        $dynamicData = [];
+        foreach ($dynamicData as $key => $value) {
             $markdown = str_replace('{{'.$key.'}}', $value, $markdown);
         }
 

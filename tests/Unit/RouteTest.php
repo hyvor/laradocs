@@ -1,7 +1,7 @@
 <?php
 
 beforeEach(function(){
-    $this->config = config('docgenpackage');
+    $this->config = config('laradocs_config');
 });
 
 test('test document routes in configuration', function () {
