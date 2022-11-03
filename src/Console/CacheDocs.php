@@ -2,6 +2,7 @@
 
 namespace Hyvor\Laradocs\Console;
 
+use Hyvor\Laradocs\Facades\ContentProcessor;
 use Hyvor\Laradocs\Http\Controllers\DocsController;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Cache;
@@ -17,14 +18,14 @@ class CacheDocs extends Command
         $config = config('laradocs_config');
 
         if(is_array($config)){
-            foreach($config as $docKey => $doc){
+            foreach($config as $doc){
                 foreach($doc['navigation'] as $page){
                     foreach($page as $link){
-                        $pageLink = $link[0] ?? 'index';
-                        $key = $docKey.'|'.$pageLink;
+                        $pageLink = $link['id'] ?? 'index';
+                        $key = $doc['route'].'|'.$pageLink;
                        
-                        $response = (new DocsController)->processContent($docKey, $pageLink);
-                        Cache::store('file')->put($key, $response);
+                        $response = ContentProcessor::process($doc['route'], $pageLink);
+                        Cache::store('file')->put($key, $response->render());
                     }
                 }
             }

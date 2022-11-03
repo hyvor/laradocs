@@ -10,6 +10,10 @@ class LaradocsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laradocs_config');
+
+        $this->app->bind('ContentProcessor', function($app) {
+            return new ContentProcessor();
+        });
     }
 
     public function boot() : void

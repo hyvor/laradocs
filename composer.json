@@ -26,7 +26,10 @@
         "laravel": {
             "providers": [
                 "Hyvor\\Laradocs\\LaradocsServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "ContentProcessor": "Hyvor\\Laradocs\\Facades\\ContentProcessor"
+            }
         }
     },
     "config": {
