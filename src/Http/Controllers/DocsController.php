@@ -75,7 +75,7 @@ class DocsController extends Controller
 
             return $content;
         } else {
-            return $this->error("Content file not exist in defined path");
+            return $this->error("Content file not exist or empty");
         }
     }
 
