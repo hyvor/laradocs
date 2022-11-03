@@ -9,7 +9,6 @@ use ParsedownExtra;
 
 class DocsController extends Controller
 {
-    protected array $dynamicData = [];
     public function handle(Request $request)
     {
         $page = (string) $request->route('page');
@@ -25,10 +24,10 @@ class DocsController extends Controller
         $navigation = $documentConfig['navigation'] ?? [];
 
         $filePath = $this->getFilePath($navigation, $page);
-       
+
         $cacheKey = $route.'|'.$filePath;
-        if(Cache::get($cacheKey))
-            $content = Cache::get($cacheKey);
+        if(Cache::store('file')->get($cacheKey))
+            $content = Cache::store('file')->get($cacheKey);
         else
             $content = $this->processContent($contentDir, $filePath);
         
@@ -71,24 +70,18 @@ class DocsController extends Controller
 
             $parseDown = new ParsedownExtra();
             $content = $parseDown->text($content);
-            $content = $this->replaceDynamicData($content);
+            // $content = $this->replaceDynamicData($content);
 
             return $content;
         } else {
-            return $this->error("Content file not exist or empty");
+            return $this->error("Content file does not exist or empty");
         }
     }
 
     private function error(string $error) : string 
     {
         return <<<HTML
-        <div style="padding: 10px;
-            text-align: center;
-            background: #f9bdbd;
-            font-weight: 600;
-            border-radius: 5px;
-            font-size: 15px;
-        ">
+        <div class="error-message">
             $error
         </div>
         HTML;
@@ -101,10 +94,5 @@ class DocsController extends Controller
         }
 
         return $markdown;
-    }
-
-    protected function setDynamicData(array $dynamicData) : void
-    {
-        $this->dynamicData = $dynamicData;
     }
 }

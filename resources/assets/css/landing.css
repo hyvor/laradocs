@@ -15,6 +15,13 @@ a.link {
     background: var(--color-accent);
 }
 
+div.error-message{
+    text-align: center;
+    color: #ed6a6a;
+    font-weight: 600;
+    font-size: 18px;
+}
+
 /* some copies from bootstrap */
 .container {
     width: 100%;
