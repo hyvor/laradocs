@@ -3,7 +3,6 @@
 namespace Hyvor\Laradocs;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Cache;
 use ParsedownExtra;
 
 class ContentProcessor
@@ -12,11 +11,11 @@ class ContentProcessor
     private array $data;
     public function __construct()
     {
-        $this->config = config('laradocs_config') ?? [];
+        $this->config = (array) config('laradocs_config');
         $this->data = [];
     }
 
-    public function process(string $route, string $page) : mixed
+    public function process(string $route, string $page) : JsonResponse
     {
         $key = array_search($route, array_column($this->config, 'route'));
         $documentConfig = $this->config[$key];
@@ -27,33 +26,36 @@ class ContentProcessor
         $filePath = $linkData->getData()->file;
         $title = $linkData->getData()->label;
 
-        $cacheKey = $route.'|'.$filePath;
-        if(Cache::store('file')->get($cacheKey))
-            return Cache::store('file')->get($cacheKey);
-        else{
-            $file = (string) resource_path("views/$contentDir/$filePath.md");
-            if (file_exists($file)) {
-                $content = file_get_contents($file);
-                if (!$content)
-                    return abort(404);
+        $file = (string) resource_path("views/$contentDir/$filePath.md");
+        if (file_exists($file)) {
+            $content = file_get_contents($file);
+            if (!$content)
+                return abort(404);
 
-                $parseDown = new ParsedownExtra();
-                $content = $parseDown->text($content);
-                $content = $this->replaceDynamicData($content);
-            } else {
-                $error = "Content file does not exist or empty";
-                $content = "<div class='error-message'>$error</div>";
-            }
-
-            return view('laradocs_views::docs', [
-                'pageName' => $page,
-                'content' => $content,
-                'title' => $title,
-                'route' => $route,
-                'theme' => $documentConfig['theme'] ?? 'theme',
-                'nav' => $navigation,
-            ]);
+            $parseDown = new ParsedownExtra();
+            $content = $parseDown->text($content);
+            $content = $this->replaceDynamicData($content);
+        } else {
+            $error = "Content file does not exist or empty";
+            $content = "<div class='error-message'>$error</div>";
         }
+
+        return response()->json([
+            'pageName' => $page,
+            'content' => $content,
+            'title' => $title,
+            'route' => $route,
+            'theme' => $documentConfig['theme'] ?? 'theme',
+            'nav' => $navigation,
+        ]);
+    }
+
+    public function cacheViews(string $route, string $page) : mixed
+    {
+        $data = $this->process($route, $page);
+        return view('laradocs_views::docs', 
+        json_decode($data->content(), true)
+        )->render();
     }
 
      /**

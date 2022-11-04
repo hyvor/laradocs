@@ -21,11 +21,11 @@ class CacheDocs extends Command
             foreach($config as $doc){
                 foreach($doc['navigation'] as $page){
                     foreach($page as $link){
-                        $pageLink = $link['id'] ?? 'index';
+                        $pageLink = !empty($link['id']) ? $link['id'] : 'index';
                         $key = $doc['route'].'|'.$pageLink;
-                       
-                        $response = ContentProcessor::process($doc['route'], $pageLink);
-                        Cache::store('file')->put($key, $response->render());
+
+                        $response = ContentProcessor::cacheViews($doc['route'], $link['id']);
+                        Cache::store('file')->put($key, $response);
                     }
                 }
             }
