@@ -26,7 +26,7 @@ class ContentProcessor
         $filePath = $linkData->getData()->file;
         $title = $linkData->getData()->label;
 
-        $file = (string) resource_path("views/$contentDir/$filePath.md");
+        $file = (string) base_path("$contentDir/$filePath.md");
         if (file_exists($file)) {
             $content = file_get_contents($file);
             if (!$content)
