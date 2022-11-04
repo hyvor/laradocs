@@ -82,7 +82,7 @@ class ContentProcessor
     private function replaceDynamicData(string $markdown) : string
     {
         foreach ($this->data as $key => $value) {
-            $markdown = str_replace('{{'.$key.'}}', $value, $markdown);
+            $markdown = preg_replace("/{{\s* $key +\s*}}/", $value, $markdown);
         }
 
         return $markdown;
