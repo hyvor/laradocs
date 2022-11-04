@@ -26,9 +26,9 @@ test('test pages routes in each doc', function () {
     }
 });
 
-test('test invalid page route', function () {
+test('test invalid page route not found status', function () {
     foreach($this->config as $section){
         $route = strtolower($section['route']);
-        $this->get($route.'/testing')->assertStatus(500);
+        $this->get($route.'/testing')->assertStatus(404);
     }
 });
