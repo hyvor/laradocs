@@ -30,41 +30,53 @@ php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" -
 php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="views"
 ```
 ## Inside config file
-You can change this file values according to your need.
+You can change this file values according to your requirement.
 ```php
 <?php
 
 return 
 [
-    'laradocs' => [ //first documentation path
-        'name' => 'laradocs',
-        'theme' => 'theme',//theme css file name
-        'content_directory' => 'docs/laradocs',//md files path
+    [
+        /**
+         * @required
+         * The subdomain given by Laradocs to the documentation
+         */
+        'route' => 'laradocs',
+        /**
+         * @optional
+         * The theme file name of your documentation(without .css extention)
+         */
+        'theme' => null,
+         /**
+         * @required
+         * where should we host your content files? path should be set from your application base path.
+         */
+        'content_directory' => 'resources/views/docs/laradocs',
+        /**
+         * @required
+         * How is your document navigation should looks like?
+         * It should have section and each section link should have id,file,lable properties
+         * Id represents link path, label indcaties title of page while option file field for define custom location for content file.
+         */
         'navigation' => [
-            'Intro' => [
-                [null, 'Getting Started'],
-                ['export', 'Export'],
-                ['invalid', 'Invalid']
+            'First Section' => [
+                [
+                    'id' => '',
+                    'label' => 'Introduction'
+                ],
+                [
+                    'id' => 'description',
+                    'label' => 'What is laradocs'
+                ],
             ],
-            'Features' => [
-                ['sso', 'SSO'],
+            'Second Section' => [
+                [
+                    'id' => 'about',
+                    'label' => 'About us'
+                ]
             ]
         ]
-    ],
-    'docsv3' => [//second documentation path
-        'name' => 'docsv3',
-        'theme' => 'theme',//theme css file name
-        'content_directory' => 'docs/sample',//md files path
-        'navigation' => [
-            'Intro' => [
-                [null, 'Getting Started']
-            ],
-            'Features' => [
-                ['premium', 'Premium'],
-                ['business', 'Business']
-            ]
-        ]
-   ]
+    ]
 ];
 ```
 ## License
