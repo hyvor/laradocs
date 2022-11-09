@@ -34,6 +34,10 @@ You can change this file values according to your requirement.
 ```php
 <?php
 
+/**
+    * you can have multiple documents as seperate arrays inside return array.
+**/
+
 return 
 [
     [
@@ -55,14 +59,17 @@ return
         /**
          * @required
          * How is your document navigation should looks like?
-         * It should have section and each section link should have id,file,lable properties
-         * Id represents link path, label indcaties title of page while option file field for define custom location for content file.
+         * It should have section and page links. each page link should have id,lable properties and file property is optional
+         * Id represents link path, label defines title of page while option file field for define custom location for content file of relevant page.
+         * All properties should be string
+         * You can define multiples sections and multiple pages as you want
          */
         'navigation' => [
             'First Section' => [
                 [
-                    'id' => '',
-                    'label' => 'Introduction'
+                    'id' => '', //page link url
+                    'file' => 'index', // optional, you can define alternative file path here
+                    'label' => 'Introduction' // page label
                 ],
                 [
                     'id' => 'description',
