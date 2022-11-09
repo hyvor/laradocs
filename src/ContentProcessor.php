@@ -81,10 +81,10 @@ class ContentProcessor
         return abort(404);
     }
 
-    private function replaceDynamicData(string $markdown) : string
+    public function replaceDynamicData(string $markdown) : string
     {
         foreach ($this->data as $key => $value) {
-            $markdown = preg_replace("/{{\s* $key +\s*}}/", $value, $markdown);
+            $markdown = preg_replace("/{{(\s*($key+)\s*)}}/", $value, $markdown);
         }
 
         return $markdown;
