@@ -24,7 +24,7 @@ class CacheDocs extends Command
                         $pageLink = !empty($link['id']) ? $link['id'] : 'index';
                         $key = $doc['route'].'|'.$pageLink;
 
-                        $response = ContentProcessor::cacheViews($doc['route'], $link['id']);
+                        $response = ContentProcessor::cacheViews($doc['route'], $link['id'])->render();
                         Cache::store('file')->put($key, $response);
                     }
                 }

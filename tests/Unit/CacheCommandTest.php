@@ -17,7 +17,7 @@ test('check if cache set for all config links',  function() {
                 $pageLink = !empty($link['id']) ? $link['id'] : 'index';
                 $cacheKey = $doc['route'].'|'.$pageLink;
 
-                $response = ContentProcessor::cacheViews($doc['route'], $link['id']);
+                $response = ContentProcessor::cacheViews($doc['route'], $link['id'])->render();
                 $this->assertEquals(Cache::store('file')->get($cacheKey), $response);
             }
         }

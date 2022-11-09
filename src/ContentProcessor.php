@@ -26,7 +26,7 @@ class ContentProcessor
         $filePath = $linkData->getData()->file;
         $title = $linkData->getData()->label;
 
-        $file = (string) base_path("$contentDir/$filePath.md");
+        $file = base_path("$contentDir/$filePath.md");
         if (file_exists($file)) {
             $content = file_get_contents($file);
             if (!$content)
@@ -53,9 +53,11 @@ class ContentProcessor
     public function cacheViews(string $route, string $page) : mixed
     {
         $data = $this->process($route, $page);
+
+        $content = (array) json_decode($data->content(), true);
         return view('laradocs_views::docs', 
-        json_decode($data->content(), true)
-        )->render();
+            $content
+        );
     }
 
      /**
@@ -84,10 +86,10 @@ class ContentProcessor
     public function replaceDynamicData(string $markdown) : string
     {
         foreach ($this->data as $key => $value) {
-            $markdown = preg_replace("/{{(\s*($key+)\s*)}}/", $value, $markdown);
+            $markdown = preg_replace("/{{(\s*($key+)\s*)}}/", $value, $markdown ?? '');
         }
 
-        return $markdown;
+        return $markdown ?? '';
     }
 
     public function setData(array $data) : void
