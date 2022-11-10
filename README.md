@@ -11,10 +11,15 @@ composer require hyvor/laradocs
 
 ## Usage
 
-After installation you need to publish it's assets and configurations file using folowing commands to make it customizable. 
-Your content files can be placed inside `views` directory in your project and define path in `config.php` file. Default path is `views/docs/pages`.
-Then you can check it using doc generator default path `{Your project url}/docgen`. Default path can be changed in `config.php`
+After installation you need to publish it's assets and configurations file using following commands to make it customizable. 
 
+The `route` key in the configuration file is the subdomain given by Laradocs to the documentation. You cannot use your application without that subdomain route key.
+
+The `theme` key defines your theme css file name. Default theme file is `theme.css`.
+
+Your content files path can be set in `config.php` at `content_directory` as base path of your application. Default path is `docs`.
+
+`navigation` key in config is an array which defines the design of navigation in your documentation.
 ### Publish assets to public folder
 ```bash
 php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="assets"
