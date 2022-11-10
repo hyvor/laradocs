@@ -11,7 +11,7 @@ composer require hyvor/laradocs
 
 ## Usage
 
-After installation you need to publish it's assets and configurations file using following commands to make it customizable. 
+After installation you need to publish it's assets and configurations file using following commands to make it customizable. You can define multiple documentation by using several arrays in config. Each array represents seperate configurations for specific documentation of your application.
 
 The `route` key in the configuration file is the subdomain given by Laradocs to the documentation. You cannot use your application without that subdomain route key.
 
