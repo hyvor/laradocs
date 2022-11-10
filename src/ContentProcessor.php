@@ -63,8 +63,8 @@ class ContentProcessor
      /**
      * Return a new JSON response from the application.
      *
-     * @param  array<array> $navigation
-     * @param  string  $page
+     * @param array{ section: array{ link: array{ id: string, file?: string, label: string } } } $navigation
+     * @param string  $page
      * @return \Illuminate\Http\JsonResponse
      */
     private function getLinkData(array $navigation, string $page) : JsonResponse 
