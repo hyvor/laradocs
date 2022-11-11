@@ -21,10 +21,11 @@ Your content files path can be set in `config.php` at `content_directory` as bas
 
 `navigation` key in config is an array which defines the design of navigation in your documentation. There is a section array inside navigation array. The `section` seperates the links of your navigation panel.
 
-Inside a section, there are multiple arrays for navigation `links` with each link comprised three keys. They are `id, file, label`. 
-`id` is required, it defines the path for the link and content file. 
-`file` is optional, specify the path for content file if it is different from default `id` value
-`lable` is also required which establish title of the page and navigation menu lable
+Inside a section, there are multiple arrays for navigation `links` with each link comprised three keys. They are `id, file, label`
+
+- `id` is required, it defines the path for the link and content file. 
+- `file` is optional, specify the path for content file if it is different from default `id` value
+- `lable` is also required which establish title of the page and navigation menu lable
 
 ### Publish assets to public folder (* Required)
 ```bash
