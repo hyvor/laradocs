@@ -236,6 +236,7 @@ nav #nav-mobile {
     margin: 40px auto;
     display: block;
     box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
 }
 .docs-page content figcaption {
     text-align: center;
