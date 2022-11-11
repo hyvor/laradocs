@@ -19,21 +19,30 @@ The `theme` key defines your theme css file name. Default theme file is `theme.c
 
 Your content files path can be set in `config.php` at `content_directory` as base path of your application. Default path is `docs`.
 
-`navigation` key in config is an array which defines the design of navigation in your documentation.
-### Publish assets to public folder
+`navigation` key in config is an array which defines the design of navigation in your documentation. There is a section array inside navigation array. The `section` seperates the links of your navigation panel.
+
+Inside a section, there are multiple arrays for navigation `links` with each link comprised three keys. They are `id, file, label`. 
+`id` is required, it defines the path for the link and content file. 
+`file` is optional, specify the path for content file if it is different from default `id` value
+`lable` is also required which establish title of the page and navigation menu lable
+
+### Publish assets to public folder (* Required)
 ```bash
 php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="assets"
 ```
+Asset file publication is required to make them accessible for laradocs.
 
-### Publish configuration files (You can also find it in verndor directory)
+### Publish configuration files (* Required)
 ```bash
 php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="config"
 ```
+Config file publish to your application directory is required. You must define its required fields to make your laradocs plugin work.
 
-### Publish view files (If you want to customize views)
+### Publish view files (Optional)
 ```bash
 php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="views"
 ```
+You only need to publish views to your application directory if you want to customize default structure of views.
 ## Inside config file
 You can change this file values according to your requirement.
 ```php
