@@ -12,7 +12,7 @@ return
          * @optional
          * The theme file name of your documentation(without .css extention)
          */
-        'theme' => null,
+        'view' => null,
          /**
          * @required
          * where should we host your content files? path should be set from your application base path.

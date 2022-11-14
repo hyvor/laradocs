@@ -17,14 +17,13 @@ class ContentProcessor
 
     public function process(string $route, string $page) : JsonResponse
     {
-        $key = array_search($route, array_column($this->config, 'route'));
-        $documentConfig = $this->config[$key];
-        $contentDir = $documentConfig['content_directory'] ?? 'docs';
-        $navigation = $documentConfig['navigation'] ?? [];
+        $config = $this->getConfig($route);
+        $contentDir = $config['content_directory'] ?? 'docs';
+        $navigation = $config['navigation'] ?? [];
 
         $linkData = $this->getLinkData($navigation, $page);
         $filePath = $linkData->getData()->file;
-        $title = $linkData->getData()->label;
+        $label = $linkData->getData()->label;
 
         $file = base_path("$contentDir/$filePath.md");
         if (file_exists($file)) {
@@ -43,9 +42,8 @@ class ContentProcessor
         return response()->json([
             'pageName' => $page,
             'content' => $content,
-            'title' => $title,
+            'label' => $label,
             'route' => $route,
-            'theme' => $documentConfig['theme'] ?? 'theme',
             'nav' => $navigation,
         ]);
     }
@@ -58,6 +56,15 @@ class ContentProcessor
         return view('laradocs::docs', 
             $content
         );
+    }
+
+    /**
+     * @return array<mixed>
+     **/
+    public function getConfig(string $route) : array
+    {
+       $key = array_search($route, array_column($this->config, 'route'));
+       return $this->config[$key];
     }
 
      /**

@@ -44,6 +44,18 @@ Config file publish to your application directory is required. You must define i
 php artisan vendor:publish --provider="Hyvor\Laradocs\LaradocsServiceProvider" --tag="views"
 ```
 You only need to publish views to your application directory if you want to customize default structure of views.
+
+## How to create your own theme for documentation
+There is an option provided in laradocs to create your own design for the documentation. You have to define path to your view files using the `view` value in config. There are several important dynamic variables returns from laradocs backend as displayed in table bellow.
+
+| Variable Name | Data Type | Description |
+| ------ | ------ | ------ |
+| `$content` | mixed | Returns the `content` of the page |
+| `$pageName` | string | Returns the `id` value of page link |
+| `$label` | string | Returns the `label` value of page link |
+| `$route` | string | Returns the `route name` of the page |
+| `$nav` | array | Returns `navigation` array of documentation |
+
 ## Inside config file
 You can change this file values according to your requirement.
 ```php
@@ -63,9 +75,9 @@ return
         'route' => 'laradocs',
         /**
          * @optional
-         * The theme file name of your documentation(without .css extention)
+         * You can define path to your own theme here, laradocs default theme will display if null provided
          */
-        'theme' => null,
+        'view' => null,
          /**
          * @required
          * where should we host your content files? path should be set from your application base path.

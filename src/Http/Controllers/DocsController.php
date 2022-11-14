@@ -14,6 +14,7 @@ class DocsController extends Controller
     {
         $page = (string) $request->route('page');
         $route = Route::currentRouteName();
+        $config = ContentProcessor::getConfig($route);
 
         $pageLink = !empty($page) ? $page : 'index';
         $cacheKey = $route.'|'.$pageLink;
@@ -21,6 +22,6 @@ class DocsController extends Controller
             return Cache::store('file')->get($cacheKey);
 
         $data =  ContentProcessor::process($route, $page); /** @phpstan-ignore-line */
-        return view('laradocs::docs', (array) json_decode($data->content(), true));
+        return view($config['view'] ?? 'laradocs::docs', (array) json_decode($data->content(), true));
     }
 }

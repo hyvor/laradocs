@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @include('laradocs::meta', [
-        'title' => $title,
+        'label' => $label,
         'image' => '',
         'canonical' => "https://blogs.hyvor.com/{{$route}}/{{$pageName}}",
     ])
