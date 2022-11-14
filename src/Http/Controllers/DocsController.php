@@ -21,6 +21,6 @@ class DocsController extends Controller
             return Cache::store('file')->get($cacheKey);
 
         $data =  ContentProcessor::process($route, $page); /** @phpstan-ignore-line */
-        return view('laradocs_views::docs', (array) json_decode($data->content(), true));
+        return view('laradocs::docs', (array) json_decode($data->content(), true));
     }
 }

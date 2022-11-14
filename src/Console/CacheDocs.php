@@ -15,7 +15,7 @@ class CacheDocs extends Command
 
     public function handle() : void
     {
-        $config = config('laradocs_config');
+        $config = config('laradocs');
 
         if(is_array($config)){
             foreach($config as $doc){

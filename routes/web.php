@@ -3,7 +3,7 @@
 use Hyvor\Laradocs\Http\Controllers\DocsController;
 use Illuminate\Support\Facades\Route;
 
-$config = config('laradocs_config');
+$config = config('laradocs');
 
 foreach($config as $doc){
     $route = strtolower($doc['route']);

@@ -1,7 +1,7 @@
 <?php
 
 beforeEach(function(){
-    $this->config = config('laradocs_config');
+    $this->config = config('laradocs');
 });
 
 test('test document routes in configuration', function () {

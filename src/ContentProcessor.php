@@ -11,7 +11,7 @@ class ContentProcessor
     private array $data;
     public function __construct()
     {
-        $this->config = (array) config('laradocs_config');
+        $this->config = (array) config('laradocs');
         $this->data = [];
     }
 
@@ -55,7 +55,7 @@ class ContentProcessor
         $data = $this->process($route, $page);
 
         $content = (array) json_decode($data->content(), true);
-        return view('laradocs_views::docs', 
+        return view('laradocs::docs', 
             $content
         );
     }

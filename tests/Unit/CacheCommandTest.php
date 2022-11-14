@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
 
 beforeEach(function(){
-    $this->config = config('laradocs_config');
+    $this->config = config('laradocs');
 });
 
 test('check if cache set for all config links',  function() {

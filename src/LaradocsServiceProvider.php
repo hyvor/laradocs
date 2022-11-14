@@ -9,7 +9,7 @@ class LaradocsServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laradocs_config');
+        $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laradocs');
 
         $this->app->bind('ContentProcessor', function($app) {
             return new ContentProcessor();
@@ -21,7 +21,7 @@ class LaradocsServiceProvider extends ServiceProvider
         //Route registration
         $this->loadRoutesFrom(__DIR__.'/../routes/web.php');
         //Views registration
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laradocs_views');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laradocs');
 
         if ($this->app->runningInConsole()) {
             // Publish views for user customization
@@ -31,12 +31,12 @@ class LaradocsServiceProvider extends ServiceProvider
 
             // Publish config for user customization
             $this->publishes([
-              __DIR__.'/../config/config.php' => config_path('laradocs_config.php'),
+              __DIR__.'/../config/config.php' => config_path('laradocs.php'),
             ], 'config');
 
             // Publish assets for user customization
             $this->publishes([
-                __DIR__.'/../resources/assets' => public_path('laradocs_assets'),
+                __DIR__.'/../resources/assets' => public_path('laradocs'),
             ], 'assets');
 
             $this->commands([
