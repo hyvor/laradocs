@@ -25,7 +25,7 @@ class ContentProcessor
 
         $linkData = $this->getLinkData($navigation, $page);
         $filePath = $linkData->getData()->file;
-        $label = $linkData->getData()->label;
+        $title = $linkData->getData()->label;
 
         $file = base_path("$contentDir/$filePath.md");
         if (file_exists($file)) {
@@ -44,7 +44,7 @@ class ContentProcessor
         return Response::json([
             'pageName' => $page,
             'content' => $content,
-            'label' => $label,
+            'title' => $title,
             'route' => $route,
             'nav' => $navigation,
         ]);
