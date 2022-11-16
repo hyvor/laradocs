@@ -80,7 +80,7 @@ nav #nav-mobile {
    }
 }
 
-/*docs*/
+/*docs page content highliting*/
 .docs-page {
     background-color: var(--color-accent-very-light);
     font-family: var(--font-primary);
@@ -149,13 +149,6 @@ nav #nav-mobile {
 }
 .docs-page content {
     letter-spacing: 0.1px;
-   /* h3 {
-        font-size:30px;
-   }
-    h4 {
-        font-size:25px;
-   }
-    */
 }
 .docs-page content > *:first-child {
     margin-top: 0 !important;
@@ -443,12 +436,7 @@ nav #nav-mobile {
     line-height: inherit;
     white-space: pre;
 }
-@media print {
-    .docs-page .line-highlight {
-        -webkit-print-color-adjust: exact;
-        color-adjust: exact;
-   }
-}
+
 .docs-page .line-highlight:before, .docs-page .line-highlight[data-end]:after {
     content: attr(data-start);
     position: absolute;

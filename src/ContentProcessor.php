@@ -3,10 +3,12 @@
 namespace Hyvor\Laradocs;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Response;
 use ParsedownExtra;
 
 class ContentProcessor
 {
+   
     private array $config;
     private array $data;
     public function __construct()
@@ -18,7 +20,7 @@ class ContentProcessor
     public function process(string $route, string $page) : JsonResponse
     {
         $config = $this->getConfig($route);
-        $contentDir = $config['content_directory'] ?? 'docs';
+        $contentDir = strval($config['content_directory']);
         $navigation = $config['navigation'] ?? [];
 
         $linkData = $this->getLinkData($navigation, $page);
@@ -39,7 +41,7 @@ class ContentProcessor
             $content = "<div class='error-message'>$error</div>";
         }
 
-        return response()->json([
+        return Response::json([
             'pageName' => $page,
             'content' => $content,
             'label' => $label,
@@ -77,6 +79,7 @@ class ContentProcessor
     private function getLinkData(array $navigation, string $page) : JsonResponse 
     {
         foreach($navigation as $section){
+            // $section is Section
             foreach($section as $link){
                 if($link['id'] == $page){
                     if(isset($link['file']))
@@ -99,6 +102,9 @@ class ContentProcessor
         return $markdown ?? '';
     }
 
+    /**
+    * @param array{ key : string, value : string } $data
+    **/
     public function setData(array $data) : void
     {
         $this->data = $data;
