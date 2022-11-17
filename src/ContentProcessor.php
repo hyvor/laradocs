@@ -9,6 +9,9 @@ use ParsedownExtra;
 class ContentProcessor
 {
    
+    /**
+     * @var array<array> $data
+     */
     private array $config;
     private array $data;
     public function __construct()
