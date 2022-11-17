@@ -10,6 +10,8 @@ class LaradocsServiceProvider extends ServiceProvider
     public function register()
     {
         $this->mergeConfigFrom(__DIR__.'/../config/config.php', 'laradocs');
+        if(env('APP_ENV') == 'testing')
+            $this->mergeConfigFrom(__DIR__.'/../config/testing.php', 'testing');
 
         $this->app->bind('ContentProcessor', function($app) {
             return new ContentProcessor();

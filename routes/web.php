@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 $config = config('laradocs');
 
+if(env('APP_ENV') == 'testing')
+    $config = config('testing');
+
 foreach($config as $doc){
     $route = strtolower($doc['route']);
     if(empty($route))

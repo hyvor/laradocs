@@ -1,25 +1,7 @@
 <?php
 
 beforeEach(function(){
-    $this->config = [
-        [
-            'route' => 'docsv3',
-            'view' => null,
-            'content_directory' => 'resources/views/docs/pages',
-            'navigation' => [
-                'Getting Started' => [
-                    [
-                        'id' => '',
-                        'label' => 'Introduction'
-                    ],
-                    [
-                        'id' => 'install',
-                        'label' => 'Installing'
-                    ]
-                ]
-            ]
-        ]
-    ];
+    $this->config = config('testing');
 });
 
 test('test document routes in configuration', function () {
