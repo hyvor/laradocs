@@ -6,7 +6,7 @@
     @include('laradocs::meta', [
         'title' => $title,
         'image' => '',
-        'canonical' => $_SERVER['SERVER_NAME'],
+        'canonical' => $_SERVER['SERVER_NAME'] ?? '',
     ])
 </head>
 <body class="docs-page {{$pageName}}">
