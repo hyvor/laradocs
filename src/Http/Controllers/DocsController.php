@@ -12,11 +12,11 @@ class DocsController extends Controller
 {
     public function handle(Request $request) : mixed
     {
-        $page = (string) $request->route('page');
+        $page = $request->route('page');
         $route = Route::currentRouteName();
-        $config = ContentProcessor::getConfig($route);
+        $config = ContentProcessor::getConfig($route);/** @phpstan-ignore-line */
 
-        $pageLink = !empty($page) ? $page : 'index';
+        $pageLink = !empty($page) ? strval($page) : 'index';
         $cacheKey = $route.'|'.$pageLink;
         if(Cache::store('file')->get($cacheKey))
             return Cache::store('file')->get($cacheKey);
