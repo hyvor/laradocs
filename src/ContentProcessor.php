@@ -6,15 +6,21 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Response;
 use ParsedownExtra;
 
+/**
+ * @phpstan-type NavigationObject array{ array{ array{ id: string, file?: string, label: string } } }
+ * @phpstan-type ConfigObject array{ route: string, view: string, content_directory: string, navigation : NavigationObject }
+ */
 class ContentProcessor
 {
-   
     /**
-     * @var array{ array{ route: string, view: string|null, content_directory: string, navigation : array{ string : array{link: array{id: string, file?: string,label: string}}} } } $config
-     * @var array{ key : string, value : string } $data
+     * @var array< ConfigObject >
      */
     private array $config;
+    /**
+     * @var array< string, string>
+     */
     private array $data;
+    
     public function __construct()
     {
         $this->config = (array) config('laradocs');
@@ -25,7 +31,7 @@ class ContentProcessor
     {
         $config = $this->getConfig($route);
         $contentDir = strval($config['content_directory']);
-        $navigation = $config['navigation'] ?? [];
+        $navigation = $config['navigation'];
 
         $linkData = $this->getLinkData($navigation, $page);
         $filePath = $linkData['file'];
@@ -65,7 +71,7 @@ class ContentProcessor
     }
 
     /**
-     * @return array<mixed>
+     * @return ConfigObject
      **/
     public function getConfig(string $route) : array
     {
@@ -76,7 +82,7 @@ class ContentProcessor
      /**
      * Return a new JSON response from the application.
      *
-     * @param array{ section: array{ link: array{ id: string, file?: string, label: string } } } $navigation
+     * @param NavigationObject $navigation
      * @param string  $page
      * @return array< string, string>
      */
