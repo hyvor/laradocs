@@ -12,7 +12,7 @@ class DocsController extends Controller
 {
     public function handle(Request $request) : mixed
     {
-        $page = $request->route('page');
+        $page = $request->route('page', '');
         $route = Route::currentRouteName();
         $config = ContentProcessor::getConfig($route);/** @phpstan-ignore-line */
 

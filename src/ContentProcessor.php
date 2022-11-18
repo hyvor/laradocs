@@ -10,7 +10,8 @@ class ContentProcessor
 {
    
     /**
-     * @var array<array> $data
+     * @var array{ array{ route: string, view: string|null, content_directory: string, navigation : array{ string : array{link: array{id: string, file?: string,label: string}}} } } $config
+     * @var array{ key : string, value : string } $data
      */
     private array $config;
     private array $data;
@@ -27,8 +28,8 @@ class ContentProcessor
         $navigation = $config['navigation'] ?? [];
 
         $linkData = $this->getLinkData($navigation, $page);
-        $filePath = $linkData->getData()->file;
-        $title = $linkData->getData()->label;
+        $filePath = $linkData['file'];
+        $title = $linkData['label'];
 
         $file = base_path("$contentDir/$filePath.md");
         if (file_exists($file)) {
@@ -77,18 +78,17 @@ class ContentProcessor
      *
      * @param array{ section: array{ link: array{ id: string, file?: string, label: string } } } $navigation
      * @param string  $page
-     * @return \Illuminate\Http\JsonResponse
+     * @return array< string, string>
      */
-    private function getLinkData(array $navigation, string $page) : JsonResponse 
+    private function getLinkData(array $navigation, string $page) : array 
     {
         foreach($navigation as $section){
-            // $section is Section
             foreach($section as $link){
                 if($link['id'] == $page){
                     if(isset($link['file']))
-                        return new JsonResponse(['label' => $link['label'], 'file' => $link['file']]);
+                        return ['label' => $link['label'], 'file' => $link['file']];
                     else
-                        return new JsonResponse(['label' => $link['label'], 'file' => !empty($link['id']) ? $link['id'] : 'index']);
+                        return ['label' => $link['label'], 'file' => !empty($link['id']) ? $link['id'] : 'index'];
                 }
             }
         }
