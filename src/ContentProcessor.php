@@ -23,7 +23,7 @@ class ContentProcessor
     
     public function __construct()
     {
-        $this->config = (array) config('laradocs');
+        $this->config = (array) config('laradocs');/** @phpstan-ignore-line */
         $this->data = [];
     }
 
