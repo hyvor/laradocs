@@ -20,7 +20,8 @@ test('test pages routes in each doc', function () {
        foreach($section['navigation'] as $nav){
             foreach($nav as $page){
                 $route = strtolower($section['route']);
-                $this->get($route.'/'.$page['id'])->assertStatus(200);
+                $pagePath = strval($page['id']) ?? '';
+                $this->get($route.'/'. $pagePath)->assertStatus(200);
             }
        }
     }
