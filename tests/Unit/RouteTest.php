@@ -1,7 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+
 beforeEach(function(){
     $this->config = config('testing');
+    Config::set('laradocs', $this->config);
 });
 
 test('test document routes in configuration', function () {

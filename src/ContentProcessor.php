@@ -37,7 +37,7 @@ class ContentProcessor
         $filePath = $linkData['file'];
         $title = $linkData['label'];
 
-        $file = base_path("$contentDir/$filePath.md");
+        $file = $this->getContentPath($contentDir, $filePath);
         if (file_exists($file)) {
             $content = file_get_contents($file);
             if (!$content)
@@ -48,6 +48,7 @@ class ContentProcessor
             $content = $this->replaceDynamicData($content);
         } else {
             $content = "<div class='error-message'>Content file does not exist or empty</div>";
+            return abort(404);
         }
 
         return Response::json([
@@ -57,6 +58,13 @@ class ContentProcessor
             'route' => $route,
             'nav' => $navigation,
         ]);
+    }
+
+    protected function getContentPath($dir, $fileName){
+        if(env('APP_ENV') == 'testing')
+            return "__DIR__/../$dir/$fileName.md";
+        else
+            return base_path("$dir/$fileName.md");
     }
 
     public function cacheViews(string $route, string $page) : mixed
