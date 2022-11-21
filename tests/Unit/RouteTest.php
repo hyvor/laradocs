@@ -15,6 +15,18 @@ test('test invalid document route', function () {
     $this->get('invalid')->assertStatus(404);
 });
 
+test('test empty content',  function(){
+    $config = $this->config[0];
+    $route = strtolower($config['route']);
+    $this->get($route.'/empty')->assertStatus(404);
+});
+
+test('test custom content file',  function(){
+    $config = $this->config[0];
+    $route = strtolower($config['route']);
+    $this->get($route.'/custom')->assertStatus(200);
+});
+
 test('test pages routes in each doc', function () {
     foreach($this->config as $section){
        foreach($section['navigation'] as $nav){

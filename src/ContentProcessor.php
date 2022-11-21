@@ -87,7 +87,7 @@ class ContentProcessor
     public function getConfig(string $route) : array
     {
        $key = array_search($route, array_column($this->config, 'route'));
-       return $this->config[$key];
+       return (array) $this->config[$key];
     }
 
      /**

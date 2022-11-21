@@ -14,6 +14,11 @@ return [
                 [
                     'id' => 'install',
                     'label' => 'Installing'
+                ],
+                [
+                    'id' => 'custom',
+                    'file' => 'install',
+                    'label' => 'custom file'
                 ]
             ]
         ]
