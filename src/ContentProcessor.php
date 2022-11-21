@@ -51,7 +51,7 @@ class ContentProcessor
             $content = $this->replaceDynamicData($content);
         } else {
             $content = "<div class='error-message'>Content file does not exist or empty</div>";
-            return abort(404);
+            // return abort(404);
         }
 
         return Response::json([
