@@ -60,7 +60,8 @@ class ContentProcessor
         ]);
     }
 
-    protected function getContentPath($dir, $fileName){
+    protected function getContentPath(string $dir, string $fileName) : string 
+    {
         if(env('APP_ENV') == 'testing')
             return "__DIR__/../$dir/$fileName.md";
         else
