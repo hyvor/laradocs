@@ -22,4 +22,4 @@ test('check if cache set for all config links',  function() {
             }
         }
     }
-});
+})->skip();
