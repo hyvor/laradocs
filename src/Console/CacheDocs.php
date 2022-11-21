@@ -16,6 +16,8 @@ class CacheDocs extends Command
     public function handle() : void
     {
         $config = config('laradocs');
+        if(env('APP_ENV') == 'testing')
+            $config = config('testing');
 
         if(is_array($config)){
             foreach($config as $doc){

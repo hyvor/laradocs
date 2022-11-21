@@ -23,9 +23,9 @@ class ContentProcessor
     
     public function __construct()
     {
-        $this->config = (array) config('laradocs');/** @phpstan-ignore-line */
+        $this->config = config('laradocs');/** @phpstan-ignore-line */
         if(env('APP_ENV') == 'testing')
-            $this->config = (array) config('testing');/** @phpstan-ignore-line */
+            $this->config = config('testing');/** @phpstan-ignore-line */
            
         $this->data = [];
     }
