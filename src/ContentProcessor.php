@@ -47,8 +47,7 @@ class ContentProcessor
             $content = $parseDown->text($content);
             $content = $this->replaceDynamicData($content);
         } else {
-            $error = "Content file does not exist or empty";
-            $content = "<div class='error-message'>$error</div>";
+            $content = "<div class='error-message'>Content file does not exist or empty</div>";
         }
 
         return Response::json([
