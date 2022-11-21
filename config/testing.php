@@ -4,7 +4,7 @@ return [
     [
         'route' => 'docsv3',
         'view' => null,
-        'content_directory' => 'tests/Contents',
+        'content_directory' => 'tests/contents',
         'navigation' => [
             'Getting Started' => [
                 [
