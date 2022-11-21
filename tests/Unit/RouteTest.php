@@ -25,7 +25,7 @@ test('test pages routes in each doc', function () {
             }
        }
     }
-})->skip();
+});
 
 test('test invalid page route not found status', function () {
     foreach($this->config as $section){
