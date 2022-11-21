@@ -3,11 +3,9 @@
 use Hyvor\Laradocs\Facades\ContentProcessor;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Config;
 
 beforeEach(function(){
     $this->config = config('testing');
-    Config::set('laradocs', $this->config);
 });
 
 test('check if cache set for all config links',  function() {
